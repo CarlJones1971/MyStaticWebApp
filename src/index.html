@@ -57,7 +57,7 @@
 
             try {
                 // Call Azure (modified from your playground code)
-                const response = await fetch(`${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=2024-05-01-preview`, {
+                const response = await fetch(`${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=2024-02-15-preview`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
