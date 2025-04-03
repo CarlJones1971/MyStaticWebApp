@@ -29,12 +29,14 @@
     width: 200px;           /* Fixed width for the image */
     height: auto;          /* Maintain aspect ratio */
     /* margin-right: 20px; */ /* Remove if using space-between */
+    display: inline-block; /* Forces side-by-side if flex fails */
 }
 
 .title-text {
     /* No need for extra styles if using space-between */
     /* If text isn't right-aligned, add: */
     text-align: right;
+    display: inline-block; /* Forces side-by-side if flex fails */
 }
         #messages {
             height: 400px;
