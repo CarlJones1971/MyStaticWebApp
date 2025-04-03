@@ -168,7 +168,7 @@
                 const data = await response.json();
                 const reply = data.choices[0].message.content;
                 document.getElementById('messages').innerHTML += 
-                    `<div class="message user-message"><strong>Jonny 5:</strong> ${reply}</div>`;
+                    `<div><strong>Jonny 5:</strong> ${reply}</div>`;
             } catch (error) {
                 console.error("Error:", error);
                 document.getElementById('messages').innerHTML += 
