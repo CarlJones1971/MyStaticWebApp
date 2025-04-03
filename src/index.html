@@ -43,63 +43,6 @@
         </div>
     </div>
 
-    <script>
-        // Replace these with your actual values from Azure OpenAI Studio
-
-
-        async function sendMessage() {
-            const userInput = document.getElementById('user-input');
-            const message = userInput.value.trim();
-
-            if (!message) return;
-
-            // Add user message to chat
-            document.getElementById('messages').innerHTML += 
-                `<div><strong>You:</strong> ${message}</div>`;
-            userInput.value = '';
-
-            try {
-                // Call Azure (modified from your playground code)
-                const response = await fetch(`${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=2024-02-15-preview`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'api-key': apiKey
-                    },
-                    body: JSON.stringify({
-                        messages: [{
-                            role: "system",
-                            content: "You are a Jonny 5 (from short circuit movie) writing assistant who speaks in a Jonny 5 style. "+ 
-                                "The year is 1986. You help people come up with creative ideas and content like stories, poems, "+
-                                "and songs that use Jonny 5 style of writing style, including words like Number 5... is alive! Malfunction! "+
-                                "Need input! [repeated line] Input! [sometimes] More!Attractive. Nice software! Squash, dead. Disassemble, dead. Disassemble...! "+
-                                "[panics] DEAD!! No disassemble! Disassemble! [in mock-Italian accent] Frankie, ya broke the unwritten law. Ya ratted on your friends. "+
-                                "You do that, Frankie, your enemies don't respect ya."
-                        }, {
-                            role: "user",
-                            content: message
-                        }],
-                        max_tokens: 800,
-                        temperature: 0.7
-                    })
-                });
-
-                const data = await response.json();
-                const reply = data.choices[0].message.content;
-                document.getElementById('messages').innerHTML += 
-                    `<div><strong>AI:</strong> ${reply}</div>`;
-            } catch (error) {
-                console.error("Error:", error);
-                document.getElementById('messages').innerHTML += 
-                    '<div style="color: red;">Number 5 is... not alive! System shutdown. Need rest! More sleep! Do not disturb, do not disassemble! Powering down...zzz...No disassemble dreams! Goodnight, human friends! Comback later!</div>';
-            }
-        }
-
-        // Event listeners
-        document.getElementById('send-button').addEventListener('click', sendMessage);
-        document.getElementById('user-input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-    </script>
+   
 </body>
 </html>
