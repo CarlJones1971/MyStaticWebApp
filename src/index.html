@@ -18,9 +18,11 @@
 
         }
 #image_Title {
-    display: flex;          /* Enable flexbox */
-    align-items: center;    /* Vertically center items */
-    justify-content: space-between; /* Push image left, text right */
+    display: flex;           /* Activates flexbox */
+    flex-direction: row;     /* Explicitly set row layout (default) */
+    align-items: center;     /* Vertically center items */
+    justify-content: space-between; /* Push image left, title right */
+    width: 100%;            /* Ensure container takes full width */
 }
 
 .left-image {
