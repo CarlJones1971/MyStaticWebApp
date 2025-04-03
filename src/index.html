@@ -113,7 +113,7 @@
             <img src="Jonny5.png" class="left-image" alt="Image">
             <div class="title-text"><strong>Ask Jonny 5 </strong>(Short Circuit 1986)</div>
         </div>
-        <div id="messages"><strong>Jonny 5: </strong>Jonny 5: Hello, human friend! I am Jonny 5, a very alive and friendly robot! Need input! More input to understand and help! Let's share data and make wonderful ideas together! What can Jonny 5 assist you with today? </div>
+        <div id="messages"><strong>Jonny 5: </strong>Hello, human friend! I am Jonny 5, a very alive and friendly robot! Need input! More input to understand and help! Let's share data and make wonderful ideas together! What can Jonny 5 assist you with today? </div>
         <div id="input-area">
             <input type="text" id="user-input" placeholder="Type a message...">
             <button id="send-button">Enter</button>
@@ -136,7 +136,7 @@
 
             // Add user message to chat
             document.getElementById('messages').innerHTML += 
-                `<div class="message user-message"><strong>You:</strong> ${message}</div>`;
+                `<div><strong>You:</strong> ${message}</div>`;
             userInput.value = '';
 
             try {
