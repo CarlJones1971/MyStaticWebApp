@@ -17,23 +17,23 @@
             }
 
         }
-       #image_Title {
-            display: flex;
-            align-items: center; /* Vertically center items */
-            justify-content: space-between; /* Push image left and title right */
-        }
+#image_Title {
+    display: flex;          /* Enable flexbox */
+    align-items: center;    /* Vertically center items */
+    justify-content: space-between; /* Push image left, text right */
+}
 
-        .left-image {
-            margin-right: 20px; /* Optional: Adds space between image and title */
-            width: 50px;
-            height: auto;
-        }
+.left-image {
+    width: 50px;           /* Fixed width for the image */
+    height: auto;          /* Maintain aspect ratio */
+    /* margin-right: 20px; */ /* Remove if using space-between */
+}
 
-        /* Optional: Ensure the title takes remaining space and aligns right */
-        .title-text {
-            margin-left: auto; /* Pushes title to the right */
-            //text-align: right; /* Aligns text to the right */
-        }
+.title-text {
+    /* No need for extra styles if using space-between */
+    /* If text isn't right-aligned, add: */
+    text-align: right;
+}
         #messages {
             height: 400px;
             border: 1px solid #ddd;
@@ -91,8 +91,9 @@
 <body>
     <div id="chat-container">
         <div id="image_title">
-            <img src="Jonny5.png" alt="Jonny 5" class="left-image">
-            <div class="title-text">Ask Jonny 5 (Short Circuit 1986)</div>
+            <img src="Jonny5.png" class="left-image" alt="Image">
+            <div class="title-text">Your Title Here</div>
+
             <!-- <img src="Jonny5.png" alt="Jonny 5" class="left-image">
             <h1><strong>Ask Jonny 5 (Short Circuit 1986)</strong></h1>-->
         </div>
