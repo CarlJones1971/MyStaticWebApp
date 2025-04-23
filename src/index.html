@@ -110,10 +110,10 @@
 <body>
     <div id="chat-container">
         <div id="image_title">
-            <img src="Jonny5NoBackground.png" class="left-image" alt="Image">
-            <div class="title-text"><strong>Ask Jonny 5 </strong>(Short Circuit 1986)</div>
+            <img src="Robby2.png" class="left-image" alt="Image">
+            <div class="title-text"><strong>Ask Robby 2 </strong>(Short Circuit 1986)</div>
         </div>
-        <div id="messages"><strong>Jonny 5: </strong>Hello, human friend! I am Jonny 5, a very alive and friendly robot! Need input! More input to understand and help! Let's share data and make wonderful ideas together! What can Jonny 5 assist you with today? </div>
+        <div id="messages"><strong>Robby 2: </strong>Hello, human friend! I am Robby 2, a very alive and friendly robot! Need input! More input to understand and help! Let's share data and make wonderful ideas together! What can Robby 2 assist you with today? </div>
         <div id="input-area">
             <input type="text" id="user-input" placeholder="Type a message...">
             <button id="send-button">Enter</button>
@@ -168,11 +168,11 @@
                 const data = await response.json();
                 const reply = data.choices[0].message.content;
                 document.getElementById('messages').innerHTML += 
-                    `<div><strong>Jonny 5:</strong> ${reply}</div>`;
+                    `<div><strong>Robby 2:</strong> ${reply}</div>`;
             } catch (error) {
                 console.error("Error:", error);
                 document.getElementById('messages').innerHTML += 
-                    '<div style="color: red;"><strong>Jonny 5:</strong>Number 5 is... not alive! System shutdown. Need rest! More sleep! Do not disturb, do not disassemble! Powering down...zzz...No disassemble dreams! Goodnight, human friends! Comback later!</div>';
+                    '<div style="color: red;"><strong>Robby 2:</strong>Number 2 is... not alive! System shutdown. Need rest! More sleep! Do not disturb, do not disassemble! Powering down...zzz...No disassemble dreams! Goodnight, human friends! Comback later!</div>';
             }
         }
 
