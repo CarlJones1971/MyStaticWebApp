@@ -1,1 +1,8 @@
-
+{
+  "name": "jonny5-api",
+  "version": "1.0.0",
+  "description": "API for Jonny 5",
+  "engines": {
+    "node": "18.x"
+  }
+}
