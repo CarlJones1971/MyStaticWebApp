@@ -2,6 +2,10 @@
   "name": "jonny5-api",
   "version": "1.0.0",
   "description": "API for Jonny 5",
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests yet\""
+  },
   "engines": {
     "node": "18.x"
   }
