@@ -127,7 +127,7 @@
 
         async function sendMessage() {
             // Get token from SWA function
-            const token = await (await fetch('/api/getToken')).json();
+            //const token = await (await fetch('/api/getToken')).json();
             
             const userInput = document.getElementById('user-input');
             const message = userInput.value.trim();
@@ -145,8 +145,8 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        //'api-key': apiKey
-                        'api-key': token.apiKey
+                        'api-key': apiKey
+                        //'api-key': token.apiKey
                     },
                     body: JSON.stringify({
                         messages: [{
