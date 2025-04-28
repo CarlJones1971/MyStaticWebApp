@@ -1,4 +1,8 @@
 export async function get(req, res) {
+
+  res.json({ message: "Working!" });
+
+  
   // Only allow GET requests
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Malfunction! Wrong input method!' });
