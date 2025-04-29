@@ -120,44 +120,7 @@
     </div>
 
     <script>
-let speechSynthesizer;
 
-async function initializeSpeechSynthesis() {
-    // Get speech credentials from your function
-    //const response = await fetch('https://your-function.azurewebsites.net/api/getSpeechToken');
-   // const { speechKey, speechRegion } = await response.json();
-    const speechKey= "zaHb6KEJvvWp4ZjCLB2NMlOQBOwo7mPlyc4wn10Tcaoqk5ythvuLJQQJ99BDACfhMk5XJ3w3AAAYACOGX4pm";
-    const speechRegion="swedencentral";
-    const speechConfig = SpeechSDK.SpeechConfig.fromSubscription(speechKey, speechRegion);
-    speechConfig.speechSynthesisVoiceName = "en-US-JennyNeural"; // Robby-like voice
-    
-    const audioConfig = SpeechSDK.AudioConfig.fromDefaultSpeakerOutput();
-    speechSynthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig, audioConfig);
-}
-
-function speak(text) {
-    if (!speechSynthesizer) {
-        console.error("Speech synthesizer not initialized");
-        return;
-    }
-    
-    speechSynthesizer.speakTextAsync(
-        text,
-        result => {
-            if (result.reason === SpeechSDK.ResultReason.SynthesizingAudioCompleted) {
-                console.log("Speech synthesized");
-            } else {
-                console.error("Speech synthesis failed", result.errorDetails);
-            }
-        },
-        error => {
-            console.error("Error:", error);
-        }
-    );
-}
-
-// Call this when your app loads
-initializeSpeechSynthesis();
 
 
         
