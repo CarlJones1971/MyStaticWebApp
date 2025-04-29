@@ -168,7 +168,7 @@ const ssml = `
     <speak version="1.0" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
         <voice name="en-US-ChristopherNeural"> <!-- Young male voice -->
             <mstts:express-as style="excited" styledegree="3"> <!-- Maximum excitement -->
-                <prosody  rate="+30%" pitch="+15%"> <!-- Faster and higher pitched -->
+                <prosody contour="(0%,+20Hz) (100%,-10Hz)" rate="+30%" pitch="+30%"> <!-- Faster and higher pitched -->
                     <emphasis level="strong">
                          ${text}
                     </emphasis>             
