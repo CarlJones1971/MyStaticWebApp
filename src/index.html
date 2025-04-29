@@ -325,7 +325,9 @@ async function getApiKey() {
                 speak(reply);
             } catch (error) {
                 console.error("Error:", error);
-                document.getElementById('messages').innerHTML += 
+                 const replyError="Number 2 is... not alive! System shutdown. Need rest! More sleep! Do not disturb, do not disassemble! Powering down...zzz...No disassemble dreams! Goodnight, human friends! Comback later!";
+                speak(replyError);
+                 document.getElementById('messages').innerHTML += 
                     '<div style="color: red;"><strong>Robby 2:</strong>Number 2 is... not alive! System shutdown. Need rest! More sleep! Do not disturb, do not disassemble! Powering down...zzz...No disassemble dreams! Goodnight, human friends! Comback later!</div>';
             }
         }
