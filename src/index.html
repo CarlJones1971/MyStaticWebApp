@@ -179,11 +179,11 @@ let isListening = false;
 document.getElementById('mic-button').addEventListener('click', () => {
     if (!isListening) {
         speechRecognizer.startContinuousRecognitionAsync();
-        document.getElementById('mic-button').textContent = "🔴";
+        document.getElementById('mic-button').textContent = '&#128308;';
         isListening = true;
     } else {
         speechRecognizer.stopContinuousRecognitionAsync();
-        document.getElementById('mic-button').textContent = "🎤";
+        document.getElementById('mic-button').textContent = &#127908; ;
         isListening = false;
     }
 });
