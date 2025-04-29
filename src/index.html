@@ -263,7 +263,7 @@ const ssml = `
             <mstts:express-as style="excited" styledegree="3"> <!-- Maximum excitement -->
                 <prosody contour="(0%,+20Hz) (100%,-10Hz)" rate="+60%" pitch="+30%"> <!-- Faster and higher pitched -->
                     <emphasis level="strong">
-                         <break time="10ms"/> <!-- Minimal pause between phrases -->
+
                             <lexicon>
                                 ${text.split(' ').join('<break time="5ms"/>')}
                             </lexicon>
