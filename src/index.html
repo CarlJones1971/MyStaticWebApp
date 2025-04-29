@@ -110,7 +110,7 @@
         }
         
         #mic-button:hover {
-            background-color: rgb(10, 10, 10);
+            background-color: rgb(240, 240, 240);
         }
         #copyright {
             padding: 8px 15px;
@@ -181,13 +181,13 @@ let isListening = false;
 document.getElementById('mic-button').addEventListener('click', () => {
     if (!isListening) {
         speechRecognizer.startContinuousRecognitionAsync();
-        //document.getElementById('mic-button').textContent = "&#128308;";
-        micBtn.innerHTML = "&#128308;"; // Red circle when active
+        document.getElementById('mic-button').innerHTML = "&#128308;";
+        //micBtn.innerHTML = "&#128308;"; // Red circle when active
         isListening = true;
     } else {
         speechRecognizer.stopContinuousRecognitionAsync();
-        //document.getElementById('mic-button').textContent = "&#127908;" ;
-        micBtn.innerHTML = "&#127908;"; // Mic symbol when idle
+        document.getElementById('mic-button').innerHTML = "&#127908;" ;
+        //micBtn.innerHTML = "&#127908;"; // Mic symbol when idle
         isListening = false;
     }
 });
