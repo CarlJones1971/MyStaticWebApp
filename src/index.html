@@ -160,7 +160,7 @@ async function getApiKey() {
 //get api keys
 apiKey=getApiKey();
 
-console.log("SpeechKey:", speachKey);
+console.log("SpeechKey:", speechKey);
 function checkMicrophonePermission() {
     navigator.permissions.query({ name: 'microphone' }).then(permissionStatus => {
         if (permissionStatus.state === 'denied') {
