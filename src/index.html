@@ -236,6 +236,8 @@ async function getApiKey() {
                 const reply = data.choices[0].message.content;
                 document.getElementById('messages').innerHTML += 
                     `<div><strong>Robby 2:</strong> ${reply}</div>`;
+                // Speak the reply
+                speak(reply);
             } catch (error) {
                 console.error("Error:", error);
                 document.getElementById('messages').innerHTML += 
