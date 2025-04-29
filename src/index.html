@@ -157,6 +157,8 @@ async function getApiKey() {
         return null;
     }
 }
+//get api keys
+apiKey=getApiKey();
 function checkMicrophonePermission() {
     navigator.permissions.query({ name: 'microphone' }).then(permissionStatus => {
         if (permissionStatus.state === 'denied') {
@@ -237,9 +239,11 @@ const ssml = `
     <speak version="1.0" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
         <voice name="en-US-ChristopherNeural"> <!-- Young male voice -->
             <mstts:express-as style="excited" styledegree="3"> <!-- Maximum excitement -->
-                <prosody contour="(0%,+20Hz) (100%,-10Hz)" rate="+30%" pitch="+30%"> <!-- Faster and higher pitched -->
+                <prosody contour="(0%,+20Hz) (100%,-10Hz)" rate="+40%" pitch="+30%"> <!-- Faster and higher pitched -->
                     <emphasis level="strong">
+                        <break time="5ms">
                          ${text}
+                         </break>
                     </emphasis>             
                 </prosody>    
             </mstts:express-as>
@@ -264,7 +268,7 @@ checkMicrophonePermission();
         //const apiKey = "QfKJOOP6BecSqVaNSH6tWNYNegJCXU2tcEbGcrqnKxGL3Top3DmUJQQJ99BDACfhMk5XJ3w3AAAAACOGA2WU";
 
 
-apiKey=getApiKey();
+
         
         const deployment = "gpt-4";
 
