@@ -125,7 +125,7 @@ let speechSynthesizer;
 
 async function initializeSpeechSynthesis() {
     // Get speech credentials from your function
-    const response = await fetch('https://your-function.azurewebsites.net/api/getSpeechToken');
+    const response = await fetch('https://robby2gettoken.azurewebsites.net/api/myGetToken');
     const { speechKey} = await response.json();
     //const speechKey= "zaHb6KEJvvWp4ZjCLB2NMlOQBOwo7mPlyc4wn10Tcaoqk5ythvuLJQQJ99BDACfhMk5XJ3w3AAAYACOGX4pm";
     const speechRegion="swedencentral";
@@ -142,28 +142,7 @@ function speak(text) {
         return;
     }
     
-    //speechSynthesizer.speakTextAsync(
-      //  text,
-       // result => {
-        //    if (result.reason === SpeechSDK.ResultReason.SynthesizingAudioCompleted) {
-        //        console.log("Speech synthesized");
-         //   } else {
-       //         console.error("Speech synthesis failed", result.errorDetails);
-       //     }
-     //   },
-      //  error => {
-     //       console.error("Error:", error);
-     //   }
-    //);
-//<voice name="en-GB-RyanNeural">
-          //'languageCode':'en-us',
-      //'name':'en-US-Standard-B',
-      //'ssmlGender':'MALE'
-    //<say-as interpret-as="expletive">Bleep</say-as> 
-    //<audio src="soundbank://soundfx/ui/electronic/robot_blip_01"/>
-    //<voice 'languageCode':'en-us','name':'en-US-Standard-B','ssmlGender':'MALE'>
-    //<audio src="soundbank://soundfx/technology/robots/robot_blip_05"/>
-    // </mstts:silence>                 <mstts:silence type="Sentenceboundary" value="200ms"> contour="(0%,+20Hz) (100%,-10Hz)",
+ 
 const ssml = `
     <speak version="1.0" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
         <voice name="en-US-ChristopherNeural"> <!-- Young male voice -->
