@@ -121,8 +121,20 @@
     <script>
         // Replace these with your actual values from Azure OpenAI Studio
         const endpoint = "https://ai-carljones4835ai313903331434.openai.azure.com/";
-        const apiKey = "QfKJOOP6BecSqVaNSH6tWNYNegJCXU2tcEbGcrqnKxGL3Top3DmUJQQJ99BDACfhMk5XJ3w3AAAAACOGA2WU";
-        //const token = await (await fetch("https://robby2gettoken.azurewebsites.net/api/myGetToken?")).json();
+        //const apiKey = "QfKJOOP6BecSqVaNSH6tWNYNegJCXU2tcEbGcrqnKxGL3Top3DmUJQQJ99BDACfhMk5XJ3w3AAAAACOGA2WU";
+let apiKey = ""; // This will be populated when we fetch it
+
+// Function to get the API key from your function app
+async function getApiKey() {
+    try {
+        const response = await fetch('https://robby2gettoken.azurewebsites.net/api/myGetToken');
+        const data = await response.json();
+        return data.apiKey;
+    } catch (error) {
+        console.error("Error fetching API key:", error);
+        return null;
+    }
+}
 
 
         
@@ -130,19 +142,8 @@
 
 
         async function sendMessage() {
-            // Get token from SWA function
-            //const token = await (await fetch('/api/getToken')).json();
-            try {
-  const response = await fetch("https://robby2gettoken.azurewebsites.net/api/myGetToken?");
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
-  }
-  const token = await response.json();
-  console.log("Token received:", token);
-  // Use token here
-} catch (error) {
-  console.error("Error fetching token:", error);
-}
+            // Get token from  function https://robby2gettoken.azurewebsites.net/api/myGetToken
+
             
             const userInput = document.getElementById('user-input');
             const message = userInput.value.trim();
@@ -154,14 +155,22 @@
                 `<div><strong>You:</strong> ${message}</div>`;
             userInput.value = '';
 
-            try {
+             try {
+                // Get API key if we don't have it yet
+                if (!apiKey) {
+                    apiKey = await getApiKey();
+                    if (!apiKey) {
+                        throw new Error("Could not get API key");
+                    }
+                }
+
                 // Call Azure (modified from your playground code)
                 const response = await fetch(`${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=2024-02-15-preview`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'api-key': apiKey
-                        //'api-key': token.apiKey
+                        
                     },
                     body: JSON.stringify({
                         messages: [{
