@@ -144,8 +144,7 @@ function checkMicrophonePermission() {
     });
 }
 
-// Call this when initializing
-checkMicrophonePermission();
+
         
 let speechRecognizer;
 
@@ -175,6 +174,21 @@ async function initializeSpeechRecognition() {
         }
     };
 }
+// Toggle microphone listening
+let isListening = false;
+document.getElementById('mic-button').addEventListener('click', () => {
+    if (!isListening) {
+        speechRecognizer.startContinuousRecognitionAsync();
+        document.getElementById('mic-button').textContent = "🔴";
+        isListening = true;
+    } else {
+        speechRecognizer.stopContinuousRecognitionAsync();
+        document.getElementById('mic-button').textContent = "🎤";
+        isListening = false;
+    }
+});
+
+        
 let speechSynthesizer;
 
 async function initializeSpeechSynthesis() {
@@ -222,7 +236,8 @@ const ssml = `
 // Call this when your app loads
 initializeSpeechSynthesis();
 initializeSpeechRecognition();
-        
+// Call this when initializing
+checkMicrophonePermission();
         // Replace these with your actual values from Azure OpenAI Studio
         const endpoint = "https://ai-carljones4835ai313903331434.openai.azure.com/";
         //const apiKey = "QfKJOOP6BecSqVaNSH6tWNYNegJCXU2tcEbGcrqnKxGL3Top3DmUJQQJ99BDACfhMk5XJ3w3AAAAACOGA2WU";
