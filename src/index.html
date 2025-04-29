@@ -4,20 +4,7 @@
     <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
     <title>Writing Assistant</title>
     <style>
-        #mic-button {
-    height: 100px;
-    width: 60px;
-    margin-left: 5px;
-    font-size: 24px;
-    border-radius: 20px;
-    background-color: #005000;
-    color: #00ff00;
-    cursor: pointer;
-}
 
-#mic-button:hover {
-    background-color: #008000;
-}
         #chat-container {
             width: 100%;
             max-width: 600px;
@@ -110,6 +97,23 @@
             font-family: 'Courier New', Courier,monospace; /* Default font for all messages */
             font-size: 20px;
         }
+        #send-button:hover {
+            background-color: rgb(10, 10, 10);
+        }
+        #mic-button {
+            height: 100px;
+            width: 60px;
+            margin-left: 5px;
+            font-size: 24px;
+            border-radius: 20px;
+            background-color: #005000;
+            //color: #00ff00;
+            cursor: pointer;
+        }
+        
+        #mic-button:hover {
+            background-color: rgb(10, 10, 10);
+        }
         #copyright {
             padding: 8px 15px;
             margin-left: 10px;
@@ -129,7 +133,7 @@
         <div id="input-area">
             <input type="text" id="user-input" placeholder="Type a message...">
             <button id="send-button">Enter</button>
-            <button id="mic-button" title="Speak">"&#127908;"</button>
+            <button id="mic-button" title="Speak">&#127908;</button>
         </div>
         <div id="copyright"><strong>Copyright Notice: </strong>This app is intended for educational purposes only. All copyrighted materials used within this app are utilized under the principles of fair use. We do not claim ownership of any copyrighted content. If you believe any material has been used inappropriately, please contact me to address the issue(Carl.Jones@SouthWales.ac.uk).</div>       
     </div>
@@ -179,11 +183,11 @@ let isListening = false;
 document.getElementById('mic-button').addEventListener('click', () => {
     if (!isListening) {
         speechRecognizer.startContinuousRecognitionAsync();
-        document.getElementById('mic-button').textContent = '&#128308;';
+        document.getElementById('mic-button').textContent = "&#128308;";
         isListening = true;
     } else {
         speechRecognizer.stopContinuousRecognitionAsync();
-        document.getElementById('mic-button').textContent = &#127908; ;
+        document.getElementById('mic-button').textContent = "&#127908;" ;
         isListening = false;
     }
 });
