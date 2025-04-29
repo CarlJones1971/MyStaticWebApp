@@ -130,7 +130,7 @@ async function initializeSpeechSynthesis() {
     const speechKey= "zaHb6KEJvvWp4ZjCLB2NMlOQBOwo7mPlyc4wn10Tcaoqk5ythvuLJQQJ99BDACfhMk5XJ3w3AAAYACOGX4pm";
     const speechRegion="swedencentral";
     const speechConfig = SpeechSDK.SpeechConfig.fromSubscription(speechKey, speechRegion);
-    speechConfig.speechSynthesisVoiceName = "en-US-JennyNeural"; // Robby-like voice
+    speechConfig.speechSynthesisVoiceName = "en-GB-RyanNeural"; // Robby-like voice
     
     const audioConfig = SpeechSDK.AudioConfig.fromDefaultSpeakerOutput();
     speechSynthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig, audioConfig);
