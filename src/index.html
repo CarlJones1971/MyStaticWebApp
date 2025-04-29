@@ -124,7 +124,15 @@
         const apiKey = "QfKJOOP6BecSqVaNSH6tWNYNegJCXU2tcEbGcrqnKxGL3Top3DmUJQQJ99BDACfhMk5XJ3w3AAAAACOGA2WU";
         //const token = await (await fetch("https://robby2gettoken.azurewebsites.net/api/myGetToken?")).json();
 
-try {
+
+        
+        const deployment = "gpt-4";
+
+
+        async function sendMessage() {
+            // Get token from SWA function
+            //const token = await (await fetch('/api/getToken')).json();
+            try {
   const response = await fetch("https://robby2gettoken.azurewebsites.net/api/myGetToken");
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -135,13 +143,6 @@ try {
 } catch (error) {
   console.error("Error fetching token:", error);
 }
-        
-        const deployment = "gpt-4";
-
-
-        async function sendMessage() {
-            // Get token from SWA function
-            //const token = await (await fetch('/api/getToken')).json();
             
             const userInput = document.getElementById('user-input');
             const message = userInput.value.trim();
