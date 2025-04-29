@@ -159,11 +159,18 @@ function speak(text) {
 const ssml = `
     <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
         <voice name="en-GB-RyanNeural">
-            <prosody rate="+20%" pitch="+20%">
-                <say-as interpret-as="expletive">Bleep</say-as> 
+<emphasis level="moderate">
+      //'languageCode':'en-us',
+      //'name':'en-US-Standard-B',
+      //'ssmlGender':'MALE'
+
+        
+            <prosody rate="+20%" pitch="+30%">
+                //<say-as interpret-as="expletive">Bleep</say-as> 
                 ${text}
             </prosody>
-            <audio src="soundbank://soundfx/ui/electronic/robot_blip_01"/>
+            //<audio src="soundbank://soundfx/ui/electronic/robot_blip_01"/>
+            </emphasis>
         </voice>
     </speak>`;
     
