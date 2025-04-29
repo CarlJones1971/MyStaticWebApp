@@ -159,6 +159,8 @@ async function getApiKey() {
 }
 //get api keys
 apiKey=getApiKey();
+
+console.log("SpeechKey:", speachKey);
 function checkMicrophonePermission() {
     navigator.permissions.query({ name: 'microphone' }).then(permissionStatus => {
         if (permissionStatus.state === 'denied') {
@@ -174,6 +176,12 @@ async function initializeSpeechRecognition() {
     //const response = await fetch('https://your-function.azurewebsites.net/api/getSpeechToken');
     //const { speechKey, speechRegion } = await response.json();
     //const speechKey= "zaHb6KEJvvWp4ZjCLB2NMlOQBOwo7mPlyc4wn10Tcaoqk5ythvuLJQQJ99BDACfhMk5XJ3w3AAAYACOGX4pm";
+                    if (!apiKey) {
+                    apiKey = await getApiKey();
+                    if (!apiKey) {
+                        throw new Error("Could not get API key");
+                    }
+                }
     const speechRegion="swedencentral";
     const speechConfig = SpeechSDK.SpeechConfig.fromSubscription(speechKey, speechRegion);
     speechConfig.speechRecognitionLanguage = "en-US";
@@ -220,6 +228,12 @@ async function initializeSpeechSynthesis() {
     //const data = await response.json();
     //const speechKey=data.speechKey;
     //const speechKey= "zaHb6KEJvvWp4ZjCLB2NMlOQBOwo7mPlyc4wn10Tcaoqk5ythvuLJQQJ99BDACfhMk5XJ3w3AAAYACOGX4pm";
+                    if (!apiKey) {
+                    apiKey = await getApiKey();
+                    if (!apiKey) {
+                        throw new Error("Could not get API key");
+                    }
+                }
     const speechRegion="swedencentral";
     const speechConfig = SpeechSDK.SpeechConfig.fromSubscription(speechKey, speechRegion);
     speechConfig.speechSynthesisVoiceName = "en-GB-RyanNeural"; // Robby-like voice
