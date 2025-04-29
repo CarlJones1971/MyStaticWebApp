@@ -4,6 +4,20 @@
     <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
     <title>Writing Assistant</title>
     <style>
+        #mic-button {
+    height: 100px;
+    width: 60px;
+    margin-left: 5px;
+    font-size: 24px;
+    border-radius: 20px;
+    background-color: #005000;
+    color: #00ff00;
+    cursor: pointer;
+}
+
+#mic-button:hover {
+    background-color: #008000;
+}
         #chat-container {
             width: 100%;
             max-width: 600px;
@@ -121,6 +135,18 @@
     </div>
 
     <script>
+
+function checkMicrophonePermission() {
+    navigator.permissions.query({ name: 'microphone' }).then(permissionStatus => {
+        if (permissionStatus.state === 'denied') {
+            alert("Microphone access is blocked. Please enable it in browser settings.");
+        }
+    });
+}
+
+// Call this when initializing
+checkMicrophonePermission();
+        
 let speechRecognizer;
 
 async function initializeSpeechRecognition() {
