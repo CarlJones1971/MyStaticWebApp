@@ -155,22 +155,19 @@ function speak(text) {
      //       console.error("Error:", error);
      //   }
     //);
-
-const ssml = `
-    <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-        //<voice name="en-GB-RyanNeural">
-         <voice 'languageCode':'en-us','name':'en-US-Standard-B','ssmlGender':'MALE'>
-<emphasis level="moderate">
-      //'languageCode':'en-us',
+//<voice name="en-GB-RyanNeural">
+          //'languageCode':'en-us',
       //'name':'en-US-Standard-B',
       //'ssmlGender':'MALE'
-
-        
-            <prosody rate="+20%" pitch="+30%">
-                //<say-as interpret-as="expletive">Bleep</say-as> 
-                ${text}
-            </prosody>
-            //<audio src="soundbank://soundfx/ui/electronic/robot_blip_01"/>
+    //<say-as interpret-as="expletive">Bleep</say-as> 
+    //<audio src="soundbank://soundfx/ui/electronic/robot_blip_01"/>
+const ssml = `
+    <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
+         <voice 'languageCode':'en-us','name':'en-US-Standard-B','ssmlGender':'MALE'>
+            <emphasis level="moderate">
+                <prosody rate="+20%" pitch="+30%">
+                    ${text}
+                </prosody>
             </emphasis>
         </voice>
     </speak>`;
