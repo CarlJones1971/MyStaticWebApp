@@ -170,16 +170,20 @@ async function getApiKey() {
 let speechRecognizer;
 
 async function initializeSpeechRecognition() {
-    // Get speech config from your function (same as TTS)
-    //const response = await fetch('https://your-function.azurewebsites.net/api/getSpeechToken');
-    //const { speechKey, speechRegion } = await response.json();
-    //const speechKey= "zaHb6KEJvvWp4ZjCLB2NMlOQBOwo7mPlyc4wn10Tcaoqk5ythvuLJQQJ99BDACfhMk5XJ3w3AAAYACOGX4pm";
-    if (!speechKey) {
-        { apiKey, speechKey } = await getApiKey();
-         if (!speechKey) {
-             console.error("SpeechKey:", speechKey);
-             console.error("ApiKey:", apiKey);
+    // Get keys if we don't have them
+    if (!speechKey || !apiKey) {
+        const keys = await getApiKey();
+        if (!keys) {
+            console.error("Failed to get API keys");
+            return;
         }
+        
+        // Assign to global variables
+        apiKey = keys.apiKey;
+        speechKey = keys.speechKey;
+        
+        console.log("SpeechKey:", speechKey);
+        console.log("ApiKey:", apiKey);
     }
     const speechRegion="swedencentral";
     const speechConfig = SpeechSDK.SpeechConfig.fromSubscription(speechKey, speechRegion);
@@ -223,17 +227,20 @@ document.getElementById('mic-button').addEventListener('click', () => {
 let speechSynthesizer;
 
 async function initializeSpeechSynthesis() {
-    // Get speech credentials from your function
-    //const response = await fetch('https://robby2gettoken.azurewebsites.net/api/myGetToken');
-    //const data = await response.json();
-    //const speechKey=data.speechKey;
-    //const speechKey= "zaHb6KEJvvWp4ZjCLB2NMlOQBOwo7mPlyc4wn10Tcaoqk5ythvuLJQQJ99BDACfhMk5XJ3w3AAAYACOGX4pm";
-    if (!speechKey) {
-        { apiKey, speechKey } = await getApiKey();
-         if (!speechKey) {
-             console.error("SpeechKey:", speechKey);
-             console.error("ApiKey:", apiKey);
+    // Get keys if we don't have them
+    if (!speechKey || !apiKey) {
+        const keys = await getApiKey();
+        if (!keys) {
+            console.error("Failed to get API keys");
+            return;
         }
+        
+        // Assign to global variables
+        apiKey = keys.apiKey;
+        speechKey = keys.speechKey;
+        
+        console.log("SpeechKey:", speechKey);
+        console.log("ApiKey:", apiKey);
     }
     const speechRegion="swedencentral";
     const speechConfig = SpeechSDK.SpeechConfig.fromSubscription(speechKey, speechRegion);
