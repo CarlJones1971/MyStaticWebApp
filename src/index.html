@@ -152,14 +152,18 @@ async function getApiKey() {
         speechKey=data.speechKey;
         console.log("SpeechKey:", speechKey);
         apiKey=data.apiKey;
-        return data.apiKey;
+        return {
+        apiKey: data.apiKey,
+        speechKey: data.speechKey
+    };
     } catch (error) {
         console.error("Error fetching API key:", error);
         return null;
     }
 }
 //get api keys
-apiKey=getApiKey();
+
+const { apiKey, speechKey } = await getKeys();
 
 console.log("SpeechKey:", speechKey);
 console.log("ApiKey:", apiKey);
