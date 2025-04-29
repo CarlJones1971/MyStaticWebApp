@@ -142,19 +142,36 @@ function speak(text) {
         return;
     }
     
-    speechSynthesizer.speakTextAsync(
-        text,
-        result => {
-            if (result.reason === SpeechSDK.ResultReason.SynthesizingAudioCompleted) {
-                console.log("Speech synthesized");
-            } else {
-                console.error("Speech synthesis failed", result.errorDetails);
-            }
-        },
-        error => {
-            console.error("Error:", error);
-        }
+    //speechSynthesizer.speakTextAsync(
+      //  text,
+       // result => {
+        //    if (result.reason === SpeechSDK.ResultReason.SynthesizingAudioCompleted) {
+        //        console.log("Speech synthesized");
+         //   } else {
+       //         console.error("Speech synthesis failed", result.errorDetails);
+       //     }
+     //   },
+      //  error => {
+     //       console.error("Error:", error);
+     //   }
+    //);
+
+const ssml = `
+    <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">
+        <voice name="en-US-JennyNeural">
+            <prosody rate="-20%" pitch="+15%">
+                <say-as interpret-as="expletive">Bleep</say-as> 
+                ${text}
+            </prosody>
+            <audio src="soundbank://soundfx/ui/electronic/robot_blip_01"/>
+        </voice>
+    </speak>`;
+    
+    speechSynthesizer.speakSsmlAsync(ssml, 
+        result => console.log("Robotic speech synthesized"),
+        error => console.error("Error:", error)
     );
+    
 }
 
 // Call this when your app loads
