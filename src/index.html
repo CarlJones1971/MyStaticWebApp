@@ -159,7 +159,7 @@
          * Fetches API keys from Azure Function
          * @returns {Object} Object containing apiKey and speechKey
          */
-        async function getApiKey() {
+        async function getKeys() {
             try {
                 const response = await fetch('https://robby2gettoken.azurewebsites.net/api/myGetToken');
                 const data = await response.json();
@@ -190,7 +190,7 @@
         async function initializeSpeechRecognition() {
             // Get keys if not already available
             if (!speechKey || !apiKey) {
-                const keys = await getApiKey();
+                const keys = await getKeys();
                 if (!keys) {
                     console.error("Failed to get API keys");
                     return;
@@ -229,7 +229,7 @@
         async function initializeSpeechSynthesis() {
             // Get keys if not already available
             if (!speechKey || !apiKey) {
-                const keys = await getApiKey();
+                const keys = await getKeys();
                 if (!keys) {
                     console.error("Failed to get API keys");
                     return;
@@ -294,7 +294,7 @@
             try {
                 // Get API key if not already available
                 if (!apiKey) {
-                    const keys = await getApiKey();
+                    const keys = await getKeys();
                     if (!keys) {
                         throw new Error("Could not get API key");
                     }
