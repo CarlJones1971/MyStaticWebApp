@@ -137,13 +137,7 @@
     </div>
 
     <script>
-        function checkMicrophonePermission() {
-            navigator.permissions.query({ name: 'microphone' }).then(permissionStatus => {
-                if (permissionStatus.state === 'denied') {
-                    alert("Microphone access is blocked. Please enable it in browser settings.");
-                }
-            });
-        }
+
                 
         let apiKey = ""; // This will be populated when we fetch it
         let speechKey= ""; // This will be populated when we fetch it
@@ -162,9 +156,16 @@
                 return null;
             }
         }
-             
-        let speechRecognizer;
+        //Check for microphone
+        function checkMicrophonePermission() {
+            navigator.permissions.query({ name: 'microphone' }).then(permissionStatus => {
+                if (permissionStatus.state === 'denied') {
+                    alert("Microphone access is blocked. Please enable it in browser settings.");
+                }
+            });
+        }         
         
+        let speechRecognizer;
         async function initializeSpeechRecognition() {
             // Get keys if we don't have them
             if (!speechKey || !apiKey) {
@@ -202,7 +203,9 @@
                 }
             };
         }
+        
         initializeSpeechRecognition();
+        
         // Toggle microphone listening
         let isListening = false;
         document.getElementById('mic-button').addEventListener('click', () => {
@@ -217,8 +220,7 @@
                 //micBtn.innerHTML = "&#127908;"; // Mic symbol when idle
                 isListening = false;
             }
-        });
-        
+        });  
                 
         let speechSynthesizer;
         async function initializeSpeechSynthesis() {
@@ -248,32 +250,28 @@
                 console.error("Speech synthesizer not initialized");
                 return;
             }
-            
-         
-        const ssml = `
-            <speak version="1.0" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
-                <voice name="en-US-ChristopherNeural"> <!-- Young male voice -->
-                    <mstts:express-as style="excited" styledegree="3"> <!-- Maximum excitement -->
-                        <prosody contour="(0%,+20Hz) (100%,-10Hz)" rate="+60%" pitch="+30%"> <!-- Faster and higher pitched -->
-                            <emphasis level="strong">
-                                        ${text}
-                            </emphasis>             
-                        </prosody>    
-                    </mstts:express-as>
-                </voice>
-            </speak>`;
+             
+            const ssml = `
+                <speak version="1.0" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
+                    <voice name="en-US-ChristopherNeural"> <!-- Young male voice -->
+                        <mstts:express-as style="excited" styledegree="3"> <!-- Maximum excitement -->
+                            <prosody contour="(0%,+20Hz) (100%,-10Hz)" rate="+60%" pitch="+30%"> <!-- Faster and higher pitched -->
+                                <emphasis level="strong">
+                                    ${text}
+                                </emphasis>             
+                            </prosody>    
+                        </mstts:express-as>
+                    </voice>
+                </speak>`;
         
-            
             speechSynthesizer.speakSsmlAsync(ssml, 
                 result => console.log("Robotic speech synthesized"),
                 error => console.error("Error:", error)
-            );
-            
+            );    
         }
         
         // Call this when your app loads
         initializeSpeechSynthesis();
-        initializeSpeechRecognition();
         // Call this when initializing
         checkMicrophonePermission();
         // Replace these with your actual values from Azure OpenAI Studio
