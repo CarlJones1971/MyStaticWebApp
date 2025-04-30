@@ -1,103 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Microsoft Cognitive Services Speech SDK -->
     <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
     <title>Writing Assistant</title>
     
     <style>
+        /* Main chat container styling */
         #chat-container {
             width: 100%;
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f0f0f0; /* This is a light gray color */
-            font-family: 'Courier New', Courier,monospace; /* Default font for all messages */
+            background-color: #f0f0f0; /* Light gray background */
+            font-family: 'Courier New', Courier, monospace;
             border-radius: 40px;
         }
+        
+        /* Header section with image and title */
         #image_title {
-            display: flex;           /* Activates flexbox */
-            flex-direction: row;     /* Explicitly set row layout (default) */
-            align-items: center;     /* Vertically center items */
-            justify-content: space-between; /* Push image left, title right */
-            width: 100%;            /* Ensure container takes full width */
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
         }
         
+        /* Robot image styling */
         .left-image {
-            width: 200px;           /* Fixed width for the image */
-            height: auto;          /* Maintain aspect ratio */
-            /* margin-right: 20px; */ /* Remove if using space-between */
-            display: inline-block; /* Forces side-by-side if flex fails */
+            width: 200px;
+            height: auto;
+            display: inline-block;
         }
         
+        /* Title text styling */
         .title-text {
-            /* No need for extra styles if using space-between */
-            /* If text isn't right-aligned, add: */
             max-width: 390px;
             font-size: 38px;
             text-align: center;
-            align-items: center;     /* Vertically center items */
-            display: inline-block; /* Forces side-by-side if flex fails */
+            align-items: center;
+            display: inline-block;
         }
         
+        /* Message display area */
         #messages {
             height: 400px;
             border: 1px solid #ddd;
             padding: 20px;
             overflow-y: auto;
             margin-bottom: 10px;
-            background-color: rgb(0, 80, 0);/* This is a Dark green color */
-            //font-family: 'Courier New', Courier,monospace; /* Default font for all messages */
+            background-color: rgb(0, 80, 0); /* Dark green background */
             font-size: 20px;
             color: rgb(0, 255, 0); /* Light green text */
             border-radius: 20px;
         }
-        .message {
-            margin-bottom: 8px;
-            padding: 20px;
-            border-radius: 20px;
-            font-size: 16px;
-        }
-        .user-message {
-            color: rgb(0, 255, 0); /* Light green text */
-            //font-family: 'Courier New', Courier,monospace; /* Default font for all messages */
-            background-color: rgb(0, 80, 0);/* This is a Dark green color */
-            //font-size: 16px;
-        }
         
+        /* Input area styling */
         #input-area {
             display: flex;
-            //font-family: 'Courier New', Courier,monospace; /* Default font for all messages */
             font-size: 16px;
-            color: rgb(0, 255, 0); /* Light green text */
+            color: rgb(0, 255, 0);
         }
+        
+        /* User input text box */
         #user-input {
             height: 80px;
             flex-grow: 1;
             padding: 8px 15px;
-            background-color:rgb(0, 80, 0);
-            color: rgb(0, 255, 0); /* Light green text */
-            font-family: 'Courier New', Courier,monospace; /* Default font for all messages */
+            background-color: rgb(0, 80, 0);
+            color: rgb(0, 255, 0);
+            font-family: 'Courier New', Courier, monospace;
             font-size: 20px;
             border-radius: 20px;
         }
-        /* Style the placeholder text */
+        
+        /* Placeholder text styling */
         #user-input::placeholder {
-            color: rgb(0, 255, 0); /* Light green placeholder */
-            opacity: 1; /* Ensure full visibility */
+            color: rgb(0, 255, 0);
+            opacity: 1;
         }
+        
+        /* Send button styling */
         #send-button {
             height: 100px;
             width: 100px;
             padding: 8px 15px;
             margin-left: 10px;
             border-radius: 20px;
-            font-family: 'Courier New', Courier,monospace; /* Default font for all messages */
+            font-family: 'Courier New', Courier, monospace;
             font-size: 20px;
             background-color: rgb(220, 220, 220);
         }
-        #send-button:hover {
-            background-color: rgb(250, 250, 250);
-        }
+        
+        /* Microphone button styling */
         #mic-button {
             height: 100px;
             width: 60px;
@@ -109,54 +104,78 @@
             cursor: pointer;
         }
         
-        #mic-button:hover {
+        /* Hover effects for buttons */
+        #send-button:hover, #mic-button:hover {
             background-color: rgb(250, 250, 250);
         }
+        
+        /* Copyright notice styling */
         #copyright {
             padding: 8px 15px;
             margin-left: 10px;
             border-radius: 20px;
-            //font-family: 'Courier New', Courier,monospace; /* Default font for all messages */
             font-size: 12px;
         }
     </style>
 </head>
 <body>
+    <!-- Main application container -->
     <div id="chat-container">
+        <!-- Header with robot image and title -->
         <div id="image_title">
-            <img src="Robby2.png" class="left-image" alt="Image">
+            <img src="Robby2.png" class="left-image" alt="Robby the Robot">
             <div class="title-text"><strong>Ask Robby#2</strong><br>(A Robot from 1986)</div>
         </div>
+        
+        <!-- Message display area with initial greeting -->
         <div id="messages"><strong>Robby 2: </strong>Hello, human friend! I am Robby#2, a very alive and friendly robot! Need input! More input to understand and help! Let's share data and make wonderful ideas together! What can Robby#2 assist you with today? </div>
+        
+        <!-- User input controls -->
         <div id="input-area">
             <input type="text" id="user-input" placeholder="Type here or press &#127908; to speak...">
             <button id="mic-button" title="Speak">&#127908;</button>
             <button id="send-button">Enter</button>
         </div>
+        
+        <!-- Copyright notice -->
         <div id="copyright"><strong>Copyright Notice: </strong>This app is intended for educational purposes only. All copyrighted materials used within this app are utilized under the principles of fair use. We do not claim ownership of any copyrighted content. If you believe any material has been used inappropriately, please contact me to address the issue(Carl.Jones@SouthWales.ac.uk).</div>       
     </div>
 
     <script>
-
-                
-        let apiKey = ""; // This will be populated when we fetch it
-        let speechKey= ""; // This will be populated when we fetch it
-                
-        // Function to get the API key from your function app
+        // Global variables for API keys and speech services
+        let apiKey = ""; // Will store Azure OpenAI API key
+        let speechKey = ""; // Will store Azure Speech Service key
+        
+        // Speech recognition and synthesis objects
+        let speechRecognizer;
+        let speechSynthesizer;
+        
+        // Azure service configuration
+        const endpoint = "https://ai-carljones4835ai313903331434.openai.azure.com/";
+        const deployment = "gpt-4";
+        const speechRegion = "swedencentral";
+        
+        /**
+         * Fetches API keys from Azure Function
+         * @returns {Object} Object containing apiKey and speechKey
+         */
         async function getApiKey() {
             try {
                 const response = await fetch('https://robby2gettoken.azurewebsites.net/api/myGetToken');
                 const data = await response.json();
                 return {
-                apiKey: data.apiKey,
-                speechKey: data.speechKey
-            };
+                    apiKey: data.apiKey,
+                    speechKey: data.speechKey
+                };
             } catch (error) {
                 console.error("Error fetching API key:", error);
                 return null;
             }
         }
-        //Check for microphone
+        
+        /**
+         * Checks if microphone access is granted
+         */
         function checkMicrophonePermission() {
             navigator.permissions.query({ name: 'microphone' }).then(permissionStatus => {
                 if (permissionStatus.state === 'denied') {
@@ -165,9 +184,11 @@
             });
         }         
         
-        let speechRecognizer;
+        /**
+         * Initializes speech recognition service
+         */
         async function initializeSpeechRecognition() {
-            // Get keys if we don't have them
+            // Get keys if not already available
             if (!speechKey || !apiKey) {
                 const keys = await getApiKey();
                 if (!keys) {
@@ -175,14 +196,12 @@
                     return;
                 }
                 
-                // Assign to global variables
+                // Assign keys to global variables
                 apiKey = keys.apiKey;
                 speechKey = keys.speechKey;
-                
-                console.log("SpeechKey:", speechKey);
-                console.log("ApiKey:", apiKey);
             }
-            const speechRegion="swedencentral";
+            
+            // Configure speech recognition
             const speechConfig = SpeechSDK.SpeechConfig.fromSubscription(speechKey, speechRegion);
             speechConfig.speechRecognitionLanguage = "en-US";
             
@@ -204,58 +223,46 @@
             };
         }
         
-        initializeSpeechRecognition();
-        
-        // Toggle microphone listening
-        let isListening = false;
-        document.getElementById('mic-button').addEventListener('click', () => {
-            if (!isListening) {
-                speechRecognizer.startContinuousRecognitionAsync();
-                document.getElementById('mic-button').innerHTML = "&#128308;";
-                //micBtn.innerHTML = "&#128308;"; // Red circle when active
-                isListening = true;
-            } else {
-                speechRecognizer.stopContinuousRecognitionAsync();
-                document.getElementById('mic-button').innerHTML = "&#127908;" ;
-                //micBtn.innerHTML = "&#127908;"; // Mic symbol when idle
-                isListening = false;
-            }
-        });  
-                
-        let speechSynthesizer;
+        /**
+         * Initializes speech synthesis service
+         */
         async function initializeSpeechSynthesis() {
-            // Get keys if we don't have them
+            // Get keys if not already available
             if (!speechKey || !apiKey) {
                 const keys = await getApiKey();
                 if (!keys) {
                     console.error("Failed to get API keys");
                     return;
                 }
-                // Assign to global variables
+                
                 apiKey = keys.apiKey;
                 speechKey = keys.speechKey;
-                console.log("SpeechKey:", speechKey);
-                console.log("ApiKey:", apiKey);
             }
-            const speechRegion="swedencentral";
+            
+            // Configure speech synthesis
             const speechConfig = SpeechSDK.SpeechConfig.fromSubscription(speechKey, speechRegion);
-            speechConfig.speechSynthesisVoiceName = "en-GB-RyanNeural"; // Robby-like voice
+            speechConfig.speechSynthesisVoiceName = "en-GB-RyanNeural";
             
             const audioConfig = SpeechSDK.AudioConfig.fromDefaultSpeakerOutput();
             speechSynthesizer = new SpeechSDK.SpeechSynthesizer(speechConfig, audioConfig);
         }
         
+        /**
+         * Converts text to speech with robotic characteristics
+         * @param {string} text - The text to be spoken
+         */
         function speak(text) {
             if (!speechSynthesizer) {
                 console.error("Speech synthesizer not initialized");
                 return;
             }
              
+            // SSML for robotic voice with excitement
             const ssml = `
                 <speak version="1.0" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US">
-                    <voice name="en-US-ChristopherNeural"> <!-- Young male voice -->
-                        <mstts:express-as style="excited" styledegree="3"> <!-- Maximum excitement -->
-                            <prosody contour="(0%,+20Hz) (100%,-10Hz)" rate="+60%" pitch="+30%"> <!-- Faster and higher pitched -->
+                    <voice name="en-US-ChristopherNeural">
+                        <mstts:express-as style="excited" styledegree="3">
+                            <prosody contour="(0%,+20Hz) (100%,-10Hz)" rate="+60%" pitch="+30%">
                                 <emphasis level="strong">
                                     ${text}
                                 </emphasis>             
@@ -270,15 +277,9 @@
             );    
         }
         
-        // Call this when your app loads
-        initializeSpeechSynthesis();
-        // Call this when initializing
-        checkMicrophonePermission();
-        // Replace these with your actual values from Azure OpenAI Studio
-        const endpoint = "https://ai-carljones4835ai313903331434.openai.azure.com/";
-        //const apiKey = "QfKJOOP6BecSqVaNSH6tWNYNegJCXU2tcEbGcrqnKxGL3Top3DmUJQQJ99BDACfhMk5XJ3w3AAAAACOGA2WU";
-        const deployment = "gpt-4";
-        
+        /**
+         * Sends user message to Azure OpenAI and displays response
+         */
         async function sendMessage() {      
             const userInput = document.getElementById('user-input');
             const message = userInput.value.trim();
@@ -291,15 +292,16 @@
             userInput.value = '';
     
             try {
-                // Get API key if we don't have it yet
+                // Get API key if not already available
                 if (!apiKey) {
-                    apiKey = await getApiKey();
-                    if (!apiKey) {
+                    const keys = await getApiKey();
+                    if (!keys) {
                         throw new Error("Could not get API key");
                     }
+                    apiKey = keys.apiKey;
                 }
         
-                // Call Azure (modified from your playground code)
+                // Call Azure OpenAI service
                 const response = await fetch(`${endpoint}/openai/deployments/${deployment}/chat/completions?api-version=2024-02-15-preview`, {
                     method: 'POST',
                     headers: {
@@ -322,24 +324,44 @@
                         max_tokens: 800,
                         temperature: 0.7
                     })
-                });//end fetch
+                });
     
                 const data = await response.json();
                 const reply = data.choices[0].message.content;
+                
+                // Display and speak the reply
                 document.getElementById('messages').innerHTML += 
                     `<div><strong>Robby#2:</strong> ${reply}</div>`;
-                // Speak the reply
                 speak(reply);
             } catch (error) {
                 console.error("Error:", error);
-                const replyError="Number 2 is... not alive! System shutdown. Need rest! More sleep! Do not disturb, do not disassemble! Powering down...zzz...No disassemble dreams! Goodnight, human friends! Comback later!";
+                const replyError = "Number 2 is... not alive! System shutdown. Need rest! More sleep! Do not disturb, do not disassemble! Powering down...zzz...No disassemble dreams! Goodnight, human friends! Comback later!";
                 speak(replyError);
                 document.getElementById('messages').innerHTML += 
                     '<div style="color: red;"><strong>Robby#2:</strong>Number 2 is... not alive! System shutdown. Need rest! More sleep! Do not disturb, do not disassemble! Powering down...zzz...No disassemble dreams! Goodnight, human friends! Comback later!</div>';
             }
-        } //end async function sendMessage()
+        }
 
-        // Event listeners
+        // Initialize speech services when page loads
+        initializeSpeechRecognition();
+        initializeSpeechSynthesis();
+        checkMicrophonePermission();
+        
+        // Microphone button toggle
+        let isListening = false;
+        document.getElementById('mic-button').addEventListener('click', () => {
+            if (!isListening) {
+                speechRecognizer.startContinuousRecognitionAsync();
+                document.getElementById('mic-button').innerHTML = "&#128308;";
+                isListening = true;
+            } else {
+                speechRecognizer.stopContinuousRecognitionAsync();
+                document.getElementById('mic-button').innerHTML = "&#127908;";
+                isListening = false;
+            }
+        });  
+        
+        // Event listeners for sending messages
         document.getElementById('send-button').addEventListener('click', sendMessage);
         document.getElementById('user-input').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendMessage();
