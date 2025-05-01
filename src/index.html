@@ -204,6 +204,10 @@
             // Configure speech recognition
             const speechConfig = SpeechSDK.SpeechConfig.fromSubscription(speechKey, speechRegion);
             speechConfig.speechRecognitionLanguage = "en-US";
+
+       // Set properties for silence detection
+        speechConfig.setProperty(SpeechSDK.PropertyId.SpeechServiceConnection_InitialSilenceTimeoutMs, "3000"); // 3 seconds
+        speechConfig.setProperty(SpeechSDK.PropertyId.SpeechServiceConnection_EndSilenceTimeoutMs, "1000"); // 1 second pause triggers recognition
             
             const audioConfig = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
             speechRecognizer = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
@@ -212,6 +216,14 @@
             speechRecognizer.recognized = (s, e) => {
                 if (e.result.reason === SpeechSDK.ResultReason.RecognizedSpeech) {
                     document.getElementById('user-input').value = e.result.text;
+
+                    // Auto-submit if we have text and recognition is complete
+                    if (e.result.text && e.result.text.trim().length > 0) {
+                        setTimeout(() => {
+                            sendMessage();
+                        }, 500); // Small delay before submitting
+                    }
+
                 }
             };
             
