@@ -154,7 +154,7 @@
         const endpoint = "https://ai-carljones4835ai313903331434.openai.azure.com/";
                 // OpenRouter API configuration
         const openRouterEndpoint = "https://openrouter.ai/api/v1";
-        const deepseekModelId = "deepseek/deepseek-chat-v3-0324";//deepseek-chat";//deepseek-coder"; // Replace with your preferred DeepSeek model ID
+        const deepseekModelId = "deepseek/deepseek-chat-v3-0324:free";//deepseek-chat";//deepseek-coder"; // Replace with your preferred DeepSeek model ID
         const deployment = "gpt-4";
         const speechRegion = "swedencentral";
         
@@ -350,6 +350,7 @@
                 // Display and speak the reply
                 document.getElementById('messages').innerHTML += 
                     `<div><strong>Robby#2:</strong> ${reply}</div>`;
+                document.getElementById('messages').scrollTop=document.getElementById('messages').scrollHeight;
                 speak(reply);
             } catch (error) {
                 console.error("Error:", error);
@@ -357,6 +358,7 @@
                 speak(replyError);
                 document.getElementById('messages').innerHTML += 
                     '<div style="color: red;"><strong>Robby#2:</strong>Number 2 is... not alive! System shutdown. Need rest! More sleep! Do not disturb, do not disassemble! Powering down...zzz...No disassemble dreams! Goodnight, human friends! Comback later!</div>';
+                document.getElementById('messages').scrollTop=document.getElementById('messages').scrollHeight;
             }
         }
 
